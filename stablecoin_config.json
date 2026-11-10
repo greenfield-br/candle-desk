@@ -1,0 +1,10 @@
+{
+  "assets": {
+    "USDT": {"id": "1", "name": "Tether", "gecko_id": "tether"},
+    "USDC": {"id": "2", "name": "USD Coin", "gecko_id": "usd-coin"},
+    "OUSD": {"id": "443", "name": "Open USD", "gecko_id": "open-usd"}
+  },
+  "default_selection": ["USDT", "USDC", "OUSD"],
+  "synthetic_symbol": "STABLECOIN_SUM",
+  "missing_value_policy": "common_dates_only"
+}

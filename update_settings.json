@@ -1,0 +1,8 @@
+{
+  "overlap_days": 30,
+  "full_refresh_day_of_month": 1,
+  "timeout_seconds_per_symbol": 180,
+  "dxy_fallback_timeout_seconds": 240,
+  "daily_cron_hour": 4,
+  "daily_cron_minute": 15
+}

@@ -1,0 +1,8 @@
+{
+  "binance": {
+    "trust_environment_proxy": true
+  },
+  "kucoin": {
+    "trust_environment_proxy": true
+  }
+}

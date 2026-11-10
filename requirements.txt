@@ -1,0 +1,4 @@
+# Optional downloaders; the local viewer and CSV import need neither.
+ccxt>=4.5,<5
+yfinance>=0.2.65,<1
+exchange-calendars>=4.5,<5

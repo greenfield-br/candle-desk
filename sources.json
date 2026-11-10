@@ -1,0 +1,198 @@
+{
+  "instruments": [
+    {
+      "id": "BTCUSDT",
+      "provider": "ccxt",
+      "symbol": "BTC/USDT",
+      "exchange": "binance",
+      "start": "2017-01-01",
+      "max_lag_days": 3,
+      "chart_type": "candles"
+    },
+    {
+      "id": "ETHUSDT",
+      "provider": "ccxt",
+      "symbol": "ETH/USDT",
+      "exchange": "binance",
+      "start": "2017-01-01",
+      "max_lag_days": 3,
+      "chart_type": "candles"
+    },
+    {
+      "id": "SOLUSDT",
+      "provider": "ccxt",
+      "symbol": "SOL/USDT",
+      "exchange": "binance",
+      "start": "2017-01-01",
+      "max_lag_days": 3,
+      "chart_type": "candles"
+    },
+    {
+      "id": "LINKUSDT",
+      "provider": "ccxt",
+      "symbol": "LINK/USDT",
+      "exchange": "binance",
+      "start": "2017-01-01",
+      "max_lag_days": 3,
+      "chart_type": "candles"
+    },
+    {
+      "id": "ZECUSDT",
+      "provider": "ccxt",
+      "symbol": "ZEC/USDT",
+      "exchange": "binance",
+      "start": "2017-01-01",
+      "max_lag_days": 3,
+      "chart_type": "candles"
+    },
+    {
+      "id": "XMRUSDT",
+      "provider": "ccxt",
+      "symbol": "XMR/USDT",
+      "exchange": "kucoin",
+      "start": "2017-01-01",
+      "max_lag_days": 3,
+      "chart_type": "candles",
+      "notes": "KuCoin spot XMR/USDT via standard CCXT exchange; stored separately from historical Binance candles."
+    },
+    {
+      "id": "SPY",
+      "provider": "yahoo",
+      "symbol": "SPY",
+      "notes": "US-listed symbol as requested; exchange venue comes from provider metadata. SPCX is not silently replaced with SPCK.",
+      "chart_type": "candles"
+    },
+    {
+      "id": "QQQ",
+      "provider": "yahoo",
+      "symbol": "QQQ",
+      "notes": "US-listed symbol as requested; exchange venue comes from provider metadata. SPCX is not silently replaced with SPCK.",
+      "chart_type": "candles"
+    },
+    {
+      "id": "NVDA",
+      "provider": "yahoo",
+      "symbol": "NVDA",
+      "notes": "US-listed symbol as requested; exchange venue comes from provider metadata. SPCX is not silently replaced with SPCK.",
+      "chart_type": "candles"
+    },
+    {
+      "id": "SPCX",
+      "provider": "yahoo",
+      "symbol": "SPCX",
+      "notes": "US-listed symbol as requested; exchange venue comes from provider metadata. SPCX is not silently replaced with SPCK.",
+      "chart_type": "candles"
+    },
+    {
+      "id": "BOVA11",
+      "provider": "yahoo",
+      "symbol": "BOVA11.SA",
+      "chart_type": "candles"
+    },
+    {
+      "id": "DOLA11",
+      "provider": "yahoo",
+      "symbol": "DOLA11.SA",
+      "chart_type": "candles"
+    },
+    {
+      "id": "PETR4",
+      "provider": "yahoo",
+      "symbol": "PETR4.SA",
+      "chart_type": "candles"
+    },
+    {
+      "id": "VALE3",
+      "provider": "yahoo",
+      "symbol": "VALE3.SA",
+      "chart_type": "candles"
+    },
+    {
+      "id": "RECV3",
+      "provider": "yahoo",
+      "symbol": "RECV3.SA",
+      "chart_type": "candles"
+    },
+    {
+      "id": "BEEF3",
+      "provider": "yahoo",
+      "symbol": "BEEF3.SA",
+      "chart_type": "candles"
+    },
+    {
+      "id": "DXY",
+      "provider": "yahoo",
+      "symbol": "DX-Y.NYB",
+      "start": "1999-01-01",
+      "max_lag_days": 12,
+      "notes": "If direct feed fails, explicitly labelled six-currency FRED reconstruction; four-currency rebased proxy only if necessary.",
+      "chart_type": "candles"
+    },
+    {
+      "id": "US10Y",
+      "provider": "fred",
+      "symbol": "DGS10",
+      "start": "1962-01-01",
+      "notes": "Constant-maturity daily yield in percent, not identical to TradingView US10Y.",
+      "chart_type": "line"
+    },
+    {
+      "id": "MOVE",
+      "provider": "yahoo",
+      "symbol": "^MOVE",
+      "notes": "Must verify ICE bond-volatility index identity; reject unrelated instrument.",
+      "chart_type": "candles"
+    },
+    {
+      "id": "CL1!",
+      "provider": "yahoo",
+      "symbol": "CL=F",
+      "notes": "Yahoo nearby-futures history; rollover/back-adjustment may differ from TradingView 1! series.",
+      "chart_type": "candles"
+    },
+    {
+      "id": "GC1!",
+      "provider": "yahoo",
+      "symbol": "GC=F",
+      "notes": "Yahoo nearby-futures history; rollover/back-adjustment may differ from TradingView 1! series.",
+      "chart_type": "candles"
+    },
+    {
+      "id": "SI1!",
+      "provider": "yahoo",
+      "symbol": "SI=F",
+      "notes": "Yahoo nearby-futures history; rollover/back-adjustment may differ from TradingView 1! series.",
+      "chart_type": "candles"
+    },
+    {
+      "id": "WREPO",
+      "provider": "fred",
+      "symbol": "WREPO",
+      "start": "2002-01-01",
+      "max_lag_days": 16,
+      "notes": "Weekly ending Wednesday; millions of USD; daily update checks releases without inventing daily observations.",
+      "chart_type": "line"
+    },
+    {
+      "id": "USDT_MCAP",
+      "provider": "defillama",
+      "symbol": "USDT_MCAP",
+      "max_lag_days": 4,
+      "chart_type": "line"
+    },
+    {
+      "id": "USDC_MCAP",
+      "provider": "defillama",
+      "symbol": "USDC_MCAP",
+      "max_lag_days": 4,
+      "chart_type": "line"
+    },
+    {
+      "id": "OUSD_MCAP",
+      "provider": "defillama",
+      "symbol": "OUSD_MCAP",
+      "max_lag_days": 4,
+      "chart_type": "line"
+    }
+  ]
+}
