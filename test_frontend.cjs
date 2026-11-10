@@ -1,0 +1,15 @@
+// Logic/render-call smoke test with a mocked canvas; not a browser visual test.
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const noop=()=>{},els=new Map(),operations=[],requests=[],storage=new Map();
+const drawing=new Proxy({}, {get:(o,k)=>k in o?o[k]:(...args)=>{for(const n of args)if(typeof n==='number')assert(Number.isFinite(n),`non-finite ${k}`);operations.push(k);},set:(o,k,v)=>(o[k]=v,true)});
+function el(id){if(!els.has(id))els.set(id,{value:id==='frame'?'D':'',textContent:'',style:{},classList:{toggle:noop,remove:noop},selectedOptions:[{text:'Daily'}],replaceChildren:noop,appendChild:noop,addEventListener:noop,getContext:()=>drawing,clientWidth:540,clientHeight:800,getBoundingClientRect:()=>({left:0,top:0}),setPointerCapture:noop});return els.get(id);}
+const c=vm.createContext({console,Intl,Date,Math,Number,Map,JSON,Error,document:{getElementById:el,createElement:()=>({}),body:{classList:{toggle:noop}}},window:{devicePixelRatio:1},ResizeObserver:class{observe(){}},requestAnimationFrame:f=>f(),localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v)},fetch:async(path)=>{requests.push(path);return {ok:true,json:async()=>[]};}});
+vm.runInContext(fs.readFileSync(__dirname+'/static/app.js','utf8'),c);
+setImmediate(async()=>{const before=requests.length;vm.runInContext(`
+const fixture=[{date:'2020-01-06',open:1,high:4,low:1,close:3,volume:10},{date:'2020-01-07',open:3,high:5,low:2,close:4,volume:null}];
+const weekly=aggregate(fixture,'W');if(weekly.length!==1||weekly[0].close!==4||weekly[0].volume!==null)throw Error('weekly aggregation');
+data=Array.from({length:20000},(_,i)=>({date:new Date(Date.UTC(1960,0,i+1)).toISOString().slice(0,10),open:100,high:110,low:90,close:105,volume:i%4?100:null}));end=data.length;draw();
+const previous=end;pan(-15);if(end!==previous-15)throw Error('pan');zoom(.8);if(count>=65)throw Error('zoom');levels=[100];draw();
+log=true;data=[{date:'2020-01-01',open:-10,high:5,low:-15,close:-1,volume:null}];end=1;draw();
+data=[{date:'2020-01-01',open:null,high:null,low:null,close:1,volume:null}];end=1;draw();
+`,c);assert(operations.includes('fillRect'));assert.strictEqual(requests.length,before,'draw/navigation must not fetch');await vm.runInContext(`(async()=>{catalog=[{id:7,symbol:'TEST',source:'local',first:'2020-01-01',last:'2020-01-01',bars:1,volume_bars:0,basis:'test'}];$('series').value='7';await load();await load();$('pin').onclick();if(!favouriteIds().includes(7))throw Error('favourite was not persisted');$('pin').onclick();if(favouriteIds().includes(7))throw Error('favourite not removed');})()`,c);assert.strictEqual(requests.filter(p=>p==='/api/bars?id=7').length,1,'switching back must reuse memory');assert(!requests.some(p=>p==='/api/download'),'viewing must never download');console.log('PASS: 20,000 bars; aggregation; missing volume; pan; zoom; levels; close-only; non-positive log fallback; finite render coordinates; zero redraw fetches; cached series switch; persistent favourite toggle');});
